@@ -1,0 +1,454 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'Lemon Milk';
+  src: url('LemonMilk.woff2') format('woff2'),
+    url('LemonMilk.woff') format('woff');
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1,
+p {
+  font-family: 'Lemon Milk', 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+}
+
+body {
+  background: linear-gradient(135deg, #2e2e2e, #000000);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'montserrat';
+  color: #f5f5f5;
+  padding: 1rem;
+}
+
+.container {
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  width: 90%;
+  animation: fadeIn 1s ease forwards;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+
+p {
+  font-size: 0.95rem;
+  color: #ccc;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem 1rem;
+  border: 2px solid #555;
+  border-radius: 12px;
+  background: rgba(50, 50, 50, 0.8);
+  color: #f5f5f5;
+  font-size: 1rem;
+  transition: border 0.3s, background 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #7d5fff;
+  background: rgba(60, 60, 60, 0.9);
+  outline: none;
+}
+
+button {
+  padding: 0.75rem 1.2rem;
+  border: none;
+  border-radius: 12px;
+  background: #7d5fff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+  background: #5a3ee8;
+  transform: translateY(-2px);
+}
+
+ul {
+  padding: 0;
+  margin-top: 1rem;
+  counter-reset: taskCounter;
+}
+
+li {
+  font-family: 'Montserrat', sans-serif;
+  ;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  background: rgba(40, 40, 40, 0.8);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  font-size: 1.05rem;
+  animation: slideFade 0.5s ease forwards;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+li {
+  flex: 1;
+  word-break: break-word;
+  color: #f5f5f5;
+  font-weight: 500;
+  line-height: 1.4;
+  position: relative;
+  padding-left: 2.7rem;
+}
+
+li::before {
+  counter-increment: taskCounter;
+  content: counter(taskCounter, decimal-leading-zero) ' - ';
+  position: absolute;
+  left: 0.4rem;
+  top: 1.57rem;
+  color: #ffffff;
+  font-weight: light;
+  font-family: 'Lemon Milk', 'Montserrat', sans-serif;
+  font-size: 15px;
+}
+
+li .btn-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  /* keeps the btn-group only as wide as needed */
+}
+
+li button {
+  background: #ff6b6b;
+}
+
+li button.editBtn {
+  background: #1dd1a1;
+}
+
+li button:hover {
+  opacity: 0.85;
+}
+
+li span {
+  flex: 1;
+}
+
+li .btn-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  /* spacing between edit & delete */
+}
+
+li button.dltBtn {
+  background: #ff6b6b;
+}
+
+li button.editBtn {
+  background: #1dd1a1;
+}
+
+li button:hover {
+  opacity: 0.85;
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+@keyframes check-15 {
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+li.completed {
+  opacity: 0.5;
+  text-decoration: line-through;
+  color: #888;
+  background-color: #2d2d2d;
+  transition:
+    opacity 0.4s ease,
+    color 0.4s ease,
+    background-color 0.4s ease,
+    text-decoration 0.3s ease;
+}
+
+li.completed::before {
+  color: #888;
+  transition: color 0.4s ease;
+}
+
+li.completed button.dltBtn,
+li.completed button.editBtn {
+  transition: background 0.4s ease;
+}
+
+li.completed button.dltBtn {
+  background: #fcbbbb;
+}
+
+li.completed button.editBtn {
+  background: #91ffe2;
+}
+
+.checkbox-wrapper-15 .cbx {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.checkbox-wrapper-15 .cbx span {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+}
+
+.checkbox-wrapper-15 .cbx span:first-child {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transform: scale(1);
+  vertical-align: middle;
+  border: 1px solid #B9B8C3;
+  transition: all 0.2s ease;
+}
+
+.checkbox-wrapper-15 .cbx span:first-child svg {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 6px;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+  transform: translate3d(0, 0, 0);
+}
+
+.checkbox-wrapper-15 .cbx span:first-child:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #506EEC;
+  display: block;
+  transform: scale(0);
+  opacity: 1;
+  border-radius: 50%;
+  transition-delay: 0.2s;
+}
+
+.checkbox-wrapper-15 .cbx span:last-child {
+  margin-left: 8px;
+}
+
+.checkbox-wrapper-15 .cbx span:last-child:after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: #B9B8C3;
+  transform-origin: 0 0;
+  transform: scaleX(0);
+}
+
+.checkbox-wrapper-15 .cbx:hover span:first-child {
+  border-color: #3c53c7;
+}
+
+.checkbox-wrapper-15 .inp-cbx:checked+.cbx span:first-child {
+  border-color: #3c53c7;
+  background: #3c53c7;
+  animation: check-15 0.6s ease;
+}
+
+.checkbox-wrapper-15 .inp-cbx:checked+.cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+
+.checkbox-wrapper-15 .inp-cbx:checked+.cbx span:first-child:before {
+  transform: scale(2.2);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+.checkbox-wrapper-15 .inp-cbx:checked+.cbx span:last-child {
+  color: #B9B8C3;
+  transition: all 0.3s ease;
+}
+
+.checkbox-wrapper-15 .inp-cbx:checked+.cbx span:last-child:after {
+  transform: scaleX(1);
+  transition: all 0.3s ease;
+}
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.85rem;
+  }
+
+  input[type="text"] {
+    font-size: 0.95rem;
+    padding: 0.65rem 0.9rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.65rem 1rem;
+  }
+
+  li {
+    font-size: 0.95rem;
+    padding: 0.9rem 1rem;
+    padding-left: 2.3rem;
+  }
+
+  li::before {
+    top: 1.3rem;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 95%;
+    padding: 1.2rem;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  input[type="text"] {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  button {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 0.6rem 0;
+  }
+
+  .input-group {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 2.5rem;
+    font-size: 0.9rem;
+  }
+
+  li .btn-group {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  li .btn-group button
+  {
+    width: 38%;
+    font-size: 10px;
+    padding: 7px;
+  }
+  li .btn-group .checkbox-wrapper-15 .text {
+    position: relative;
+    bottom: 22px;
+    left: 20px;
+  }
+  li .btn-group .checkbox-wrapper-15{
+    position: relative;
+    top: 10px;
+  }
+    li::before {
+    top: 1.1rem;
+    font-size: 13px;
+    left: 0.4rem;
+}
+}
+
+
